@@ -9,11 +9,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BankCardTest {
     private WebDriver driver;
+
     @BeforeAll
     static void setUpAll() {
         WebDriverManager.chromedriver().setup();
 //        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
     }
+
     @BeforeEach
     void setUpEach() {
         ChromeOptions options = new ChromeOptions();
@@ -23,11 +25,13 @@ public class BankCardTest {
         driver = new ChromeDriver(options);
         driver.get("http://localhost:9999/");
     }
+
     @AfterEach
     void tearDown() {
         driver.quit();
         driver = null;
     }
+
     @Test
     public void testInputValidData() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -39,6 +43,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputNameByLatinSymbol() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Korolev");
@@ -51,6 +56,7 @@ public class BankCardTest {
                 .getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputNameEmptyField() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("");
@@ -63,6 +69,7 @@ public class BankCardTest {
                 .getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputNameWithDigit() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев1");
@@ -75,6 +82,7 @@ public class BankCardTest {
                 .getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputNameWithSpecSymbol() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("К!@#$%^&*()_+-=/\\.,'\":;?><`№");
@@ -87,6 +95,7 @@ public class BankCardTest {
                 .getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputNameOneCyrillicSymbol() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("К");
@@ -98,6 +107,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneEmptyField() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -109,6 +119,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneOnlySymbolPlus() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -120,6 +131,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneSymbolPlusAndOneDigit() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -131,6 +143,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneWithoutSymbolPlus() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -142,6 +155,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneSymbolPlusAnd12Digits() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -153,6 +167,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneSymbolPlusAndLatinSymbol() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -164,6 +179,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneSymbolPlusAndCyrillicSymbol() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -175,6 +191,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneWithSpecSymbolDash() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -186,6 +203,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testInputPhoneWithSpecSymbolAnotherDash() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -197,6 +215,7 @@ public class BankCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'] span[class='input__sub']")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testDontClickCheckBox() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев-Петров Иван");
@@ -211,6 +230,7 @@ public class BankCardTest {
         String nameInvalidClass = "input_invalid";
         Assertions.assertTrue(fullNameClass.contains(nameInvalidClass));
     }
+
     @Test
     public void testIsErrorMessageOnlyAtInputNameOnErrorInAllFields() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("к- №");
@@ -233,6 +253,7 @@ public class BankCardTest {
         Assertions.assertFalse(fullNameClassPhone.contains(nameInvalidClass));
         Assertions.assertFalse(fullNameClassCheckbox.contains(nameInvalidClass));
     }
+
     @Test
     public void testIsErrorMessageOnlyAtInputPhoneOnErrorInPhoneAndCheckboxFields() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys(" -петров ");
