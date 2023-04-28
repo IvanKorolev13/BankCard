@@ -11,8 +11,8 @@ public class BankCardTest {
     private WebDriver driver;
     @BeforeAll
     static void setUpAll() {
-        WebDriverManager.chromedriver().setup();
-//        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
+//        WebDriverManager.chromedriver().setup();
+        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
     }
     @BeforeEach
     void setUpEach() {
@@ -29,12 +29,13 @@ public class BankCardTest {
         driver = null;
     }
     @Test
-    public void testInputValidData() {
+    public void testInputValidData() throws InterruptedException {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Королев Иван");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+12345678901");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.className("button_theme_alfa-on-white")).click();
 
+        Thread.sleep(1000);
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
         Assertions.assertEquals(expected, actual);
