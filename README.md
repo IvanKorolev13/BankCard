@@ -1,0 +1,1 @@
+CI [![Build status](https://ci.appveyor.com/api/projects/status/weedjml902s14gvy?svg=true)](https://ci.appveyor.com/project/IvanKorolev13/bankcard)
